@@ -46,10 +46,10 @@ fun NotesApp(
     val notes = noteViewModel.getAllNotes()
     NoteScreen(notes = notes,
         onAddNote = {
-            noteViewModel.removeNote(it)
+            noteViewModel.addNote(it)
         },
         onRemoveNote = {
-            noteViewModel.addNote(it)
+            noteViewModel.removeNote(it)
         })
 }
 
