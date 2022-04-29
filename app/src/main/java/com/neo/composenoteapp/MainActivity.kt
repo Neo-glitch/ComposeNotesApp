@@ -18,8 +18,10 @@ import com.neo.composenoteapp.model.Note
 import com.neo.composenoteapp.screen.NoteScreen
 import com.neo.composenoteapp.screen.NoteViewModel
 import com.neo.composenoteapp.ui.theme.ComposeNoteAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalComposeUiApi
+@AndroidEntryPoint   // needed inorder to dependencies using hilt here
 class MainActivity : ComponentActivity() {
 
 
