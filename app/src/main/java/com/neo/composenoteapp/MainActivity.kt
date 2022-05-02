@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
             ComposeNoteAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    val noteViewModel by viewModels<NoteViewModel>()
+//                    val noteViewModel by viewModels<NoteViewModel>() // another way of viewmodel init , but only compose
+                    val noteViewModel = viewModel<NoteViewModel>()
                     NotesApp(noteViewModel)
                 }
             }
@@ -45,7 +47,8 @@ class MainActivity : ComponentActivity() {
 fun NotesApp(
     noteViewModel: NoteViewModel = viewModel()
 ){
-    val notes = noteViewModel.getAllNotes()
+    // collect list as a state
+    val notes = noteViewModel.notesList.collectAsState().value
     NoteScreen(notes = notes,
         onAddNote = {
             noteViewModel.addNote(it)
